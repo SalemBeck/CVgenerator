@@ -1,0 +1,50 @@
+:root {
+    --maincolor: rgb(199, 38, 89);
+    --submaincolor: rgb(47, 10, 90);
+}
+
+body{
+    background: linear-gradient(to right ,rgb(199, 38, 89), rgb(47, 10, 90));
+
+}
+span {
+    color: var(--maincolor);
+    font-size: xx-large;
+}
+.header {
+    color: var(--submaincolor);
+    font-size: x-large;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.forms{
+        background-color: rgba(151, 95, 224, 0.35);
+        position: absolute; /* or fixed */
+        left: 50%;
+        transform: translateX(-50%);
+        top: 200px; 
+        border: 1px solid black;
+        border-radius: 15px;
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-top: 15px;
+}
+#cvForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 25px;
+}
+button {
+    border-radius: 15px;
+    color: var(--maincolor);
+    background-color: rgba(191, 143, 236, 0.642);
+}
