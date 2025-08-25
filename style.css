@@ -1,50 +1,175 @@
+/* Blue & Black Theme + Background Photo */
 :root {
-    --maincolor: rgb(199, 38, 89);
-    --submaincolor: rgb(47, 10, 90);
+    --maincolor: #1976d2;      /* Blue */
+    --submaincolor: #111217;   /* Black */
+    --accent: #0d47a1;         /* Dark Blue */
+    --bg-gradient: linear-gradient(135deg, #111217 0%, #1976d2 100%);
+    --glass-bg: rgba(17, 18, 23, 0.55);
+    --glass-border: rgba(25, 118, 210, 0.22);
+    --shadow: 0 8px 32px 0 rgba(25, 118, 210, 0.18);
 }
 
-body{
-    background: linear-gradient(to right ,rgb(199, 38, 89), rgb(47, 10, 90));
+/* Background image with overlay */
+body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') center center/cover no-repeat fixed;
+    position: relative;
+}
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: var(--bg-gradient);
+    opacity: 0.85;
+    z-index: 0;
+    pointer-events: none;
+}
 
+/* All content above overlay */
+.header, .hero, .forms {
+    position: relative;
+    z-index: 1;
 }
-span {
-    color: var(--maincolor);
-    font-size: xx-large;
-}
+
 .header {
-    color: var(--submaincolor);
-    font-size: x-large;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
+    color: var(--maincolor);
+    font-size: 2.2rem;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 18px;
+    margin-top: 40px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(25, 118, 210, 0.22);
 }
 
-.forms{
-        background-color: rgba(151, 95, 224, 0.35);
-        position: absolute; /* or fixed */
-        left: 50%;
-        transform: translateX(-50%);
-        top: 200px; 
-        border: 1px solid black;
-        border-radius: 15px;
-        padding-left: 40px;
-        padding-right: 40px;
-        padding-top: 15px;
+span {
+    color: var(--accent);
+    font-size: 2.8rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-shadow: 0 2px 8px rgba(25, 118, 210, 0.22);
 }
+
+.hero {
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 500;
+    background: var(--glass-bg);
+    padding: 10px 32px;
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(4px);
+    letter-spacing: 1px;
+    margin: 32px auto 0 auto;
+    max-width: 500px;
+    text-align: center;
+}
+
+.forms {
+    background: var(--glass-bg);
+    margin: 32px auto 0 auto;
+    border: 1.5px solid var(--glass-border);
+    border-radius: 22px;
+    padding: 32px 48px 24px 48px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(8px);
+    min-width: 340px;
+    max-width: 420px;
+}
+
 #cvForm {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    gap: 25px;
+    gap: 22px;
 }
+
+label {
+    color: var(--maincolor);
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--accent);
+    background: rgba(255,255,255,0.7);
+    font-size: 1rem;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+    transition: border-color 0.2s;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--maincolor);
+    outline: none;
+}
+
+textarea {
+    min-height: 48px;
+    resize: vertical;
+}
+
 button {
     border-radius: 15px;
-    color: var(--maincolor);
-    background-color: rgba(191, 143, 236, 0.642);
+    color: #fff;
+    background: linear-gradient(90deg, var(--maincolor), var(--accent));
+    border: none;
+    font-size: 1.2rem;
+    font-family: inherit;
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(25, 118, 210, 0.12);
+    padding: 12px 0;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+button:hover {
+    background: linear-gradient(90deg, var(--accent), var(--maincolor));
+    transform: translateY(-2px) scale(1.03);
+}
+
+.developer button {
+    position: relative;
+    bottom: 0px;
+    width: 180px;
+    height: 40px;
+    font-size: 1rem;
+    margin-top: 8px;
+    background: linear-gradient(90deg, var(--accent), var(--maincolor));
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.12);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.developer button:hover {
+    background: linear-gradient(90deg, var(--maincolor), var(--accent));
+    transform: scale(1.04);
+}
+
+@media (max-width: 600px) {
+    .forms {
+        padding: 18px 8px 12px 8px;
+        min-width: 90vw;
+        max-width: 98vw;
+        margin-top: 18px;
+    }
+    .header, .hero {
+        font-size: 1.1rem;
+        padding: 0 8px;
+        margin-top: 18px;
+    }
 }
