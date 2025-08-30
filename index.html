@@ -1,103 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CV Generator</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CV Generator — Professional Resume Builder</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css" />
   <!-- jsPDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
-
-  <div class="header">
-    <span>CV</span> Generator
-    <div class="developer">
-      <button onclick="window.open('https://kuro-code.netlify.app', '_blank')">Contact the developer</button>
+  <header class="site-header">
+    <div class="brand">
+      <svg class="logo" width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <rect width="48" height="48" rx="8" fill="#0d47a1"></rect>
+        <text x="24" y="30" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="16" font-weight="700">CV</text>
+      </svg>
+      <div class="brand-text">
+        <div class="title"><span>CV</span> Generator</div>
+        <div class="tag">Build a modern resume in seconds</div>
+      </div>
     </div>
-  </div>
 
-  <div class="hero">Generate your CV in seconds</div>
+    <nav class="header-actions">
+      <button class="btn ghost" onclick="window.open('https://kuro-code.netlify.app', '_blank')">Contact the developer</button>
+    </nav>
+  </header>
 
-  <div class="forms">
-    <form id="cvForm">
-      <!-- Photo -->
-      <label for="photoInput">Profile Photo</label>
-      <input type="file" id="photoInput" accept="image/*" required>
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Professional CVs. Fast.</h1>
+      <p>Create a clean, ATS-friendly resume with one click — export to PDF and share with employers.</p>
+      <div class="hero-cta">
+        <a class="btn primary" href="#cvForm">Get started — it's free</a>
+        <a class="btn outline" href="#how-it-works">How it works</a>
+      </div>
+    </div>
+    <figure class="hero-visual" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80" alt="" />
+    </figure>
+  </section>
 
-      <!-- Name & Title -->
-      <label for="nameinput">Full Name</label>
-      <input type="text" id="nameinput" placeholder="Enter your full name" required>
+  <main class="main">
+    <section id="how-it-works" class="features">
+      <div class="feature">
+        <h3>Modern templates</h3>
+        <p>Clean, professional layouts that pass applicant tracking systems.</p>
+      </div>
+      <div class="feature">
+        <h3>One-click PDF</h3>
+        <p>Fill your information and download a print-ready CV instantly.</p>
+      </div>
+      <div class="feature">
+        <h3>Privacy first</h3>
+        <p>Your data stays in your browser — nothing is uploaded to our servers.</p>
+      </div>
+    </section>
 
-      <label for="titleinput">Professional Title</label>
-      <input type="text" id="titleinput" placeholder="Enter your professional title" required>
+    <section class="forms" id="form-section">
+      <div class="form-card">
+        <h2 class="form-title">Create your CV</h2>
+        <form id="cvForm" autocomplete="on">
+          <!-- Photo -->
+          <label for="photoInput">Profile Photo</label>
+          <input type="file" id="photoInput" accept="image/*">
 
-      <!-- Summary -->
-      <label for="summaryinput">Summary/About Me</label>
-      <textarea id="summaryinput" placeholder="Write a short professional summary" required></textarea>
+          <!-- Name & Title -->
+          <div class="row">
+            <div class="col">
+              <label for="nameinput">Full Name</label>
+              <input type="text" id="nameinput" placeholder="Enter your full name" required>
+            </div>
+            <div class="col">
+              <label for="titleinput">Professional Title</label>
+              <input type="text" id="titleinput" placeholder="e.g. Product Designer" required>
+            </div>
+          </div>
 
-      <!-- Contact -->
-      <label for="birthdateinput">Birth Date</label>
-      <input type="date" id="birthdateinput">
+          <label for="summaryinput">Summary / About</label>
+          <textarea id="summaryinput" placeholder="A short professional summary" required></textarea>
 
-      <label for="emailinput">Email</label>
-      <input type="email" id="emailinput" placeholder="Enter your email" required>
+          <div class="row">
+            <div class="col">
+              <label for="emailinput">Email</label>
+              <input type="email" id="emailinput" placeholder="you@example.com" required>
+            </div>
+            <div class="col">
+              <label for="phoneinput">Phone</label>
+              <input type="tel" id="phoneinput" placeholder="+44 7123 456789" required>
+            </div>
+          </div>
 
-      <label for="phoneinput">Phone Number</label>
-      <input type="tel" id="phoneinput" placeholder="Enter your phone number" required>
+          <label for="addressinput">Address / City</label>
+          <input type="text" id="addressinput" placeholder="City, Country">
 
-      <label for="countryinput">Country</label>
-      <input type="text" id="countryinput" placeholder="Your country">
+          <label for="educationinput">Education</label>
+          <textarea id="educationinput" placeholder="Degrees, institutions, years" required></textarea>
 
-      <label for="addressinput">Address</label>
-      <input type="text" id="addressinput" placeholder="Your address" required>
+          <div class="row">
+            <div class="col">
+              <label for="skillprofinput">Professional Skills</label>
+              <textarea id="skillprofinput" placeholder="Leadership, Communication" required></textarea>
+            </div>
+            <div class="col">
+              <label for="skilltechinput">Technical Skills</label>
+              <textarea id="skilltechinput" placeholder="JavaScript, Excel" required></textarea>
+            </div>
+          </div>
 
-      <!-- Education -->
-      <label for="educationinput">Education</label>
-      <textarea id="educationinput" placeholder="List your degrees, schools, and years" required></textarea>
+          <label for="experienceinput">Work Experience</label>
+          <textarea id="experienceinput" placeholder="List roles, companies, years, highlights" required></textarea>
 
-      <!-- Skills -->
-      <label for="skillprofinput">Professional Skills</label>
-      <textarea id="skillprofinput" placeholder="List professional skills" required></textarea>
+          <div class="row small">
+            <div class="col">
+              <label for="ref1name">Reference 1</label>
+              <input type="text" id="ref1name" placeholder="Name">
+            </div>
+            <div class="col">
+              <label for="ref1company">Company</label>
+              <input type="text" id="ref1company" placeholder="Company">
+            </div>
+          </div>
 
-      <label for="skilltechinput">Technical Skills</label>
-      <textarea id="skilltechinput" placeholder="List technical skills" required></textarea>
+          <div class="row small">
+            <div class="col">
+              <label for="ref1phone">Phone</label>
+              <input type="tel" id="ref1phone" placeholder="Phone">
+            </div>
+            <div class="col">
+              <label for="ref1email">Email</label>
+              <input type="email" id="ref1email" placeholder="Email">
+            </div>
+          </div>
 
-      <!-- Experience -->
-      <label for="experienceinput">Work Experience</label>
-      <textarea id="experienceinput" placeholder="List job titles, companies, years, and descriptions" required></textarea>
+          <div class="row small">
+            <div class="col">
+              <label for="ref2name">Reference 2</label>
+              <input type="text" id="ref2name" placeholder="Name">
+            </div>
+            <div class="col">
+              <label for="ref2company">Company</label>
+              <input type="text" id="ref2company" placeholder="Company">
+            </div>
+          </div>
 
-      <!-- References -->
-      <label for="ref1name">Reference 1 Name</label>
-      <input type="text" id="ref1name" placeholder="Name">
+          <div class="row small">
+            <div class="col">
+              <label for="ref2phone">Phone</label>
+              <input type="tel" id="ref2phone" placeholder="Phone">
+            </div>
+            <div class="col">
+              <label for="ref2email">Email</label>
+              <input type="email" id="ref2email" placeholder="Email">
+            </div>
+          </div>
 
-      <label for="ref1company">Reference 1 Company</label>
-      <input type="text" id="ref1company" placeholder="Company">
+          <div class="form-actions">
+            <button type="submit" class="btn primary generate-btn">Generate CV</button>
+            <button type="reset" class="btn ghost">Reset</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
 
-      <label for="ref1phone">Reference 1 Phone</label>
-      <input type="tel" id="ref1phone" placeholder="Phone">
-
-      <label for="ref1email">Reference 1 Email</label>
-      <input type="email" id="ref1email" placeholder="Email">
-
-      <label for="ref2name">Reference 2 Name</label>
-      <input type="text" id="ref2name" placeholder="Name">
-
-      <label for="ref2company">Reference 2 Company</label>
-      <input type="text" id="ref2company" placeholder="Company">
-
-      <label for="ref2phone">Reference 2 Phone</label>
-      <input type="tel" id="ref2phone" placeholder="Phone">
-
-      <label for="ref2email">Reference 2 Email</label>
-      <input type="email" id="ref2email" placeholder="Email">
-
-      <!-- Submit -->
-      <button type="submit" style="margin-bottom:15px; width: 300px; height: 50px; font-size: x-large; font-family: Georgia, 'Times New Roman', Times, serif;">
-        Generate CV
-      </button>
-    </form>
-  </div>
+  <footer class="site-footer">
+    <div>
+      <small>&copy; 2025 CV Generator — Built by Kuro Code</small>
+      <a href="https://kuro-code.netlify.app" target="_blank" rel="noopener" class="footer-link">Developer</a>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
